@@ -23,8 +23,8 @@ def ask_user():
         print("Не понял?")
         return True
 
-    
-if __name__ == "__main__":
+
+def main():
     var_ask_user = True
     while var_ask_user:
         try:
@@ -34,3 +34,5 @@ if __name__ == "__main__":
             print("Пока!")
             break
 
+if __name__ == "__main__":
+    main()

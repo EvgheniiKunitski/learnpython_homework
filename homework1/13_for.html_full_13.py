@@ -14,15 +14,15 @@ awesome_school = [
             ]
 
 
-avg_class = 0
 total_school_sum = 0
 total_school_score_count = 0
 
 for i in awesome_school:
-    avg_class=sum(i["scores"])/len(i["scores"])
+    avg_class = sum(i["scores"])/len(i["scores"])
     for j in i["scores"]:
         total_school_sum += j
         total_school_score_count += 1
     print(f'Class "{i["school_class"]}" average score is {avg_class}')
 
-print(f'awesome_school has average score {total_school_sum/total_school_score_count}')
+avg_per_school = total_school_sum/total_school_score_count
+print(f'awesome_school has average score {avg_per_school}')
