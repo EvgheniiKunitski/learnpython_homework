@@ -53,27 +53,20 @@ def get_the_constellation(update, context):
     if user_planet not in planets:
         update.message.reply_text("вы ошиблись в названии планеты")
         logging.error("Planet is spelled incorrectly")
+        return
+    
+    if user_planet == 'Earth':
+        update.message.reply_text("вы ошиблись в названии планеты, земля это эпицентр наблюдения")
+        logging.error("Planet is Earth, that is incorrect")
+        return
     else:
-        if user_planet == planets[0]:
-            planet_request = ephem.Mercury(today)
-        elif user_planet == planets[1]:
-            planet_request = ephem.Venus(today)
-        #elif user_planet == planets[2]:
-        #    planet_request = ephem.Earth(today)
-        #it is a place for exception, as Earth is point of view.
-        elif user_planet == planets[3]:
-            planet_request = ephem.Mars(today)
-        elif user_planet == planets[4]:
-            planet_request = ephem.Jupiter(today)
-        elif user_planet == planets[5]:
-            planet_request = ephem.Saturn(today)
-        elif user_planet == planets[6]:
-            planet_request = ephem.Uranus(today)
-        else:
-            planet_request = ephem.Neptune(today)
-        const = ephem.constellation(planet_request)[1]
-        reply = "Сегодя планета " + user_planet + " находится в созвездии " + const
-        update.message.reply_text(reply)
+        #planet_request = ephem.Neptune(today)
+        planet_request = getattr(ephem, user_planet)(today)
+        print(planet_request)
+
+    constelatie = ephem.constellation(planet_request)[1]
+    reply = "Сегодя планета " + user_planet + " находится в созвездии " + constelatie
+    update.message.reply_text(reply)
 
 
 def main():
