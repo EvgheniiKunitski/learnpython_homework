@@ -59,10 +59,9 @@ def get_the_constellation(update, context):
         update.message.reply_text("вы ошиблись в названии планеты, земля это эпицентр наблюдения")
         logging.error("Planet is Earth, that is incorrect")
         return
-    else:
-        #planet_request = ephem.Neptune(today)
-        planet_request = getattr(ephem, user_planet)(today)
-        print(planet_request)
+
+    #planet_request = ephem.Neptune(today)
+    planet_request = getattr(ephem, user_planet)(today)
 
     constelatie = ephem.constellation(planet_request)[1]
     reply = "Сегодя планета " + user_planet + " находится в созвездии " + constelatie
